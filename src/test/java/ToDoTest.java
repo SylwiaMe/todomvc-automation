@@ -14,10 +14,21 @@ public class ToDoTest {
     }
 
     @Test
-    public void visitSite() {
+    public void visitSite() throws Exception {
         ToDoPage toDoPage = new ToDoPage(driver);
         toDoPage.navigateToSite();
+
+        toDoPage.takeScreenshot(driver, "todomvc.png");
     }
+    @Test
+    public void addEmoji() throws Exception {
+        ToDoPage toDoPage = new ToDoPage(driver);
+        toDoPage.navigateToSite();
+        toDoPage.addNewTodo("❤️");
+        toDoPage.takeScreenshot(driver, "emoji.png");
+    }
+
+
 
     @AfterAll
     static void closeBrowser() {
