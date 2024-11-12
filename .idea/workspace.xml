@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e3a93fbf-5d18-4acd-b126-80bde911758f" name="Changes" comment="init">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/emoji.png" beforeDir="false" afterPath="$PROJECT_DIR$/emoji.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ToDoPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ToDoPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ToDoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ToDoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todomvc.png" beforeDir="false" afterPath="$PROJECT_DIR$/todomvc.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +87,7 @@
     "Gradle.ToDoTest.visitSite.executor": "Run",
     "Gradle.todomvc-automation [:ToDoPage.main()].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "New-Todos",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -98,7 +100,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.ToDoTest.addEmoji">
+  <component name="RunManager" selected="Gradle.ToDoTest">
     <configuration name="ToDoPage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ToDoPage" />
       <module name="todomvc-automation.test" />
@@ -180,9 +182,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ToDoTest.addEmoji" />
-        <item itemvalue="Gradle.ToDoTest.visitSite" />
         <item itemvalue="Gradle.ToDoTest" />
+        <item itemvalue="Gradle.ToDoTest.visitSite" />
+        <item itemvalue="Gradle.ToDoTest.addEmoji" />
         <item itemvalue="Application.ToDoPage" />
       </list>
     </recent_temporary>

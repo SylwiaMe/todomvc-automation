@@ -10,6 +10,7 @@ public class ToDoTest {
 
     @BeforeAll
     static void launchBrowser() {
+
         driver = new ChromeDriver();
     }
 
@@ -24,7 +25,13 @@ public class ToDoTest {
     public void addEmoji() throws Exception {
         ToDoPage toDoPage = new ToDoPage(driver);
         toDoPage.navigateToSite();
-        toDoPage.addNewTodo("❤️");
+
+        toDoPage.addNewTodo("shower");
+        toDoPage.addNewTodo("dishes");
+        toDoPage.addNewTodo("35 books");
+        toDoPage.addNewTodo("1");
+        toDoPage.addNewTodo("ä");
+        Thread.sleep(3000);
         toDoPage.takeScreenshot(driver, "emoji.png");
     }
 
@@ -32,6 +39,7 @@ public class ToDoTest {
 
     @AfterAll
     static void closeBrowser() {
+
         driver.quit();
     }
 }
