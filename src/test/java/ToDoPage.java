@@ -7,7 +7,7 @@ public class ToDoPage {
 
     protected WebDriver driver;
 //    public final By toDoInputBoxBy = By.id("input-box");
-public final By inputBoxBy = By.id("todo-input");
+public final By inputBoxBy = By.className("new-todo");
 
     public ToDoPage(WebDriver driver) {
         this.driver = driver;
