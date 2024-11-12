@@ -12,6 +12,7 @@ public class ToDoTest {
     static void launchBrowser() {
 
         driver = new ChromeDriver();
+        HomePage homePage = new HomePage(driver);
     }
 
     @Test
