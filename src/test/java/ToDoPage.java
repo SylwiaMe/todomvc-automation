@@ -1,5 +1,16 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
 public class ToDoPage {
-    public static void main(String[] args) {
-        System.out.println("hello sylwia");
+
+    protected WebDriver driver;
+//    public final By toDoInputBoxBy = By.id("input-box");
+
+    public ToDoPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void navigateToSite() {
+        driver.get("https://todomvc.com/");
     }
 }
