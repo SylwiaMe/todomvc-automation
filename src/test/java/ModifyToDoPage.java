@@ -17,18 +17,30 @@ public class ModifyToDoPage {
         this.driver = driver;
     }
 
+    public void deleteToDo(String itemToDelete) {
+        Actions actions = new Actions(driver);
+        WebElement toDoList = driver.findElement(toDoListBy);
+        List<WebElement> toDoItems = toDoList.findElements(By.className("view"));
+        for (WebElement toDoItem: toDoItems) {
+            WebElement toDoLabel = toDoItem.findElement(By.tagName("label"));
+            if (Objects.equals(toDoLabel.getText(), itemToDelete)) {
+                actions.moveToElement(toDoItem).perform();
+                toDoItem.findElement(By.className("destroy")).click();
+            }
+        }
+    }
+
     public void editToDo(String currentText, String newText) throws Exception {
         Actions actions = new Actions(driver);
         WebElement toDoList = driver.findElement(toDoListBy);
-        List<WebElement> toDoItems = toDoList.findElements(By.tagName("label"));
-        System.out.println(toDoItems);
+        List<WebElement> toDoItems = toDoList.findElements(By.className("view"));
         for (WebElement toDoItem: toDoItems) {
-            System.out.println(toDoItem.getText());
-            if (Objects.equals(toDoItem.getText(), currentText)) {
+            WebElement toDoLabel = toDoItem.findElement(By.tagName("label"));
+            if (Objects.equals(toDoLabel.getText(), currentText)) {
                 actions.doubleClick(toDoItem).perform();
-                Thread.sleep(1200);
-                WebElement editToDoInput = toDoList.findElement(By.tagName("input"));
-                editToDoInput.sendKeys(newText + Keys.ENTER);
+                Thread.sleep(1000);
+                toDoItem.findElement(By.tagName("input")).sendKeys(newText + Keys.ENTER);
+                Thread.sleep(1000);
             }
         }
     }
