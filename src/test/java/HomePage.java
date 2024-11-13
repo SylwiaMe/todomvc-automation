@@ -3,6 +3,7 @@ import org.openqa.selenium.*;
 public class HomePage {
 
     protected WebDriver driver;
+    public final String urlRoot = "https://todomvc.com/examples/";
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -10,194 +11,193 @@ public class HomePage {
 
     public void navigateToHomePage() throws InterruptedException {
         driver.get("https://todomvc.com");
-        Thread.sleep(2000);
     }
 
     public void navigateToReact() {
-        driver.get("https://todomvc.com/examples/react/dist/");
+        driver.get(urlRoot + "react/dist/");
     }
 
     public void navigateToReactRedux() {
-        driver.get("https://todomvc.com/examples/react-redux/dist/#/");
+        driver.get(urlRoot + "react-redux/dist/#/");
     }
 
     public void navigateToVue() {
-        driver.get("https://todomvc.com/examples/vue/dist/#/");
+        driver.get(urlRoot + "vue/dist/#/");
     }
 
     public void navigateToPreact() {
-        driver.get("https://todomvc.com/examples/preact/dist/");
+        driver.get(urlRoot + "preact/dist/");
     }
 
     public void navigateToBackbone() {
-        driver.get("https://todomvc.com/examples/backbone/dist/");
+        driver.get(urlRoot + "backbone/dist/");
     }
 
     public void navigateToAngular() {
-        driver.get("https://todomvc.com/examples/angular/dist/browser/#/all");
+        driver.get(urlRoot + "angular/dist/browser/#/all");
     }
 
     public void navigateToEmber() {
-        driver.get("https://todomvc.com/examples/emberjs/todomvc/dist/");
+        driver.get(urlRoot + "emberjs/todomvc/dist/");
     }
 
     public void navigateToLit() {
-        driver.get("https://todomvc.com/examples/lit/dist/");
+        driver.get(urlRoot + "lit/dist/");
     }
 
     public void navigateToKnockout() {
-        driver.get("https://todomvc.com/examples/knockoutjs/");
+        driver.get(urlRoot + "knockoutjs/");
     }
 
     public void navigateToDojo() {
-        driver.get("https://todomvc.com/examples/dojo/");
+        driver.get(urlRoot + "dojo/");
     }
 
     public void navigateToKnockback() {
-        driver.get("https://todomvc.com/examples/knockback/");
+        driver.get(urlRoot + "knockback/");
     }
 
     public void navigateToCan() {
-        driver.get("https://todomvc.com/examples/canjs/");
+        driver.get(urlRoot + "canjs/");
     }
 
     public void navigateToPolymer() {
-        driver.get("https://todomvc.com/examples/polymer/index.html");
+        driver.get(urlRoot + "polymer/index.html");
     }
 
     public void navigateToMithril() {
-        driver.get("https://todomvc.com/examples/mithril/#/");
+        driver.get(urlRoot + "mithril/#/");
     }
 
     public void navigateToMarionette() {
-        driver.get("https://todomvc.com/examples/backbone_marionette/");
+        driver.get(urlRoot + "backbone_marionette/");
     }
 
     public void navigateToJavaScriptES5() {
-        driver.get("https://todomvc.com/examples/javascript-es5/dist/");
+        driver.get(urlRoot + "javascript-es5/dist/");
     }
 
     public void navigateToJavaScriptES6() {
-        driver.get("https://todomvc.com/examples/javascript-es6/dist/");
+        driver.get(urlRoot + "javascript-es6/dist/");
     }
 
     public void navigateToJQuery() {
-        driver.get("https://todomvc.com/examples/jquery/dist/#/all");
+        driver.get(urlRoot + "jquery/dist/#/all");
     }
 
     public void navigateToWebComponents(){
-        driver.get("https://todomvc.com/examples/web-components/dist/");
+        driver.get(urlRoot + "web-components/dist/");
     }
 
     public void navigateToSvelte() {
-        driver.get("https://todomvc.com/examples/svelte/dist/");
+        driver.get(urlRoot + "svelte/dist/");
     }
 
     public void navigateToElm() {
-        driver.get("https://todomvc.com/examples/elm/");
+        driver.get(urlRoot + "elm/");
     }
 
     public void navigateToTSAndAngular() {
-        driver.get("https://todomvc.com/examples/typescript-angular/#/");
+        driver.get(urlRoot + "typescript-angular/#/");
     }
 
     public void navigateToTSAndReact() {
-        driver.get("https://todomvc.com/examples/typescript-react/#/");
+        driver.get(urlRoot + "typescript-react/#/");
     }
 
     public void navigateToGWT() {
-        driver.get("https://todomvc.com/examples/gwt/");
+        driver.get(urlRoot + "gwt/");
     }
 
     public void navigateToScala() {
-        driver.get("https://todomvc.com/examples/binding-scala/#/");
+        driver.get(urlRoot + "binding-scala/#/");
     }
 
     public void navigateToAngularDart() {
-        driver.get("https://todomvc.com/examples/angular-dart/web/");
+        driver.get(urlRoot + "angular-dart/web/");
     }
 
     public void navigateToJSofOcaml() {
-        driver.get("https://todomvc.com/examples/js_of_ocaml/");
+        driver.get(urlRoot + "js_of_ocaml/");
     }
 
     public void navigateToClosure() {
-        driver.get("https://todomvc.com/examples/closure/#/");
+        driver.get(urlRoot + "closure/#/");
     }
 
     public void navigateToTSAndBackbone() {
-        driver.get("https://todomvc.com/examples/typescript-backbone/");
+        driver.get(urlRoot + "typescript-backbone/");
     }
 
     public void navigateToReagent() {
-        driver.get("https://todomvc.com/examples/reagent/");
+        driver.get(urlRoot + "reagent/");
     }
 
     public void navigateToHumbleAndGopher() {
         //link doesn't work
-        driver.get("https://todomvc.com/examples/humble/");
+        driver.get(urlRoot + "humble/");
     }
 
     public void navigateToBackboneAndRequire() {
-        driver.get("https://todomvc.com/examples/backbone_require/");
+        driver.get(urlRoot + "backbone_require/");
     }
 
     public void navigateToCanAndRequire() {
-        driver.get("https://todomvc.com/examples/canjs_require/");
+        driver.get(urlRoot + "canjs_require/");
     }
 
     public void navigateToSoma() {
         //link doesn't work
-        driver.get("https://todomvc.com/examples/somajs/");
+        driver.get(urlRoot + "somajs/");
     }
 
     public void navigateToEnyoAndBackbone() {
-        driver.get("https://todomvc.com/examples/enyo_backbone/");
+        driver.get(urlRoot + "enyo_backbone/");
     }
 
     public void navigateToAurelia() {
         //buggy page
-        driver.get("https://todomvc.com/examples/aurelia/");
+        driver.get(urlRoot + "aurelia/");
     }
 
     public void navigateToKnockoutAndRequire() {
-        driver.get("https://todomvc.com/examples/knockoutjs_require/");
+        driver.get(urlRoot + "knockoutjs_require/");
     }
 
     public void navigateToLavacaAndRequire() {
-        driver.get("https://todomvc.com/examples/lavaca_require/#/#@1");
+        driver.get(urlRoot + "lavaca_require/#/#@1");
     }
 
     public void navigateToDuel() {
-        driver.get("https://todomvc.com/examples/duel/www/");
+        driver.get(urlRoot + "duel/www/");
     }
 
     public void navigateToExoskeleton() {
-        driver.get("https://todomvc.com/examples/exoskeleton/");
+        driver.get(urlRoot + "exoskeleton/");
     }
 
     public void navigateToRiot() {
-        driver.get("https://todomvc.com/examples/riotjs/");
+        driver.get(urlRoot + "riotjs/");
     }
 
     public void navigateToAngularAndRequire() {
-        driver.get("https://todomvc.com/examples/angularjs_require/#/");
+        driver.get(urlRoot + "angularjs_require/#/");
     }
 
     public void navigateToCujo() {
-        driver.get("https://todomvc.com/examples/cujo/index.html");
+        driver.get(urlRoot + "cujo/index.html");
     }
 
     public void navigateToDijon() {
-        driver.get("https://todomvc.com/examples/dijon/");
+        driver.get(urlRoot + "dijon/");
     }
 
     public void navigateToRactive() {
-        driver.get("https://todomvc.com/examples/ractive/");
+        driver.get(urlRoot + "ractive/");
     }
 
     public void navigateToJSBlocks() {
-        driver.get("https://todomvc.com/examples/jsblocks/");
+        driver.get(urlRoot + "jsblocks/");
     }
 
 

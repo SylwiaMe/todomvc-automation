@@ -2,6 +2,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 
 import java.io.File;
+import java.time.Duration;
 
 public class ToDoPage {
 
@@ -13,10 +14,10 @@ public final By inputBoxBy = By.className("new-todo");
         this.driver = driver;
     }
 
-    public void navigateToSite() throws InterruptedException {
+    public void navigateToSite() {
 
         driver.get("https://todomvc.com/examples/react/dist/");
-        Thread.sleep(5000);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
     // adding new 'todo item'
     public void addNewTodo(String newToDo) {
