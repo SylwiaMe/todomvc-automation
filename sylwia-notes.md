@@ -10,8 +10,9 @@
 - Add assertions
 - More tests for ToDoPage
 - Add assertion to addEmoji that tests whether todo item.getText() == exact emoji input
-- 
+- To complete few ToDos from the list (not all) and test markComplete?
 
 ## Done
 - Replace thread.sleep with implicit wait
 - Use rootUrl variable in HomePage
+- All ToDo items may be marked as complete/incomplete at once 

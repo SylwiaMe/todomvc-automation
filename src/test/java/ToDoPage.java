@@ -10,12 +10,13 @@ public class ToDoPage {
     protected WebDriver driver;
     public final By inputBoxBy = By.className("new-todo");
     public final By toDoCountBy = By.className("todo-count");
+    public final By toggleAllBy = By.cssSelector("input[type=checkbox]");
 
     public ToDoPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    // adding new 'todo item'
+    // method that adds a new ToDo item
     public void addNewTodo(String newToDo) {
         WebElement inputContainer = driver.findElement(inputBoxBy);
         inputContainer.sendKeys(newToDo + Keys.ENTER);
@@ -23,6 +24,11 @@ public class ToDoPage {
     public Boolean isToDoCountHidden() {
         List<WebElement> toDoCountElements = driver.findElements(toDoCountBy);
         return toDoCountElements.isEmpty();
+    }
+    // method that marks all ToDos as complete
+    public void markAllAsComplete() {
+        WebElement markAllButton = driver.findElement(toggleAllBy);
+        markAllButton.click();
     }
 
     public String retrieveToDoCount() {

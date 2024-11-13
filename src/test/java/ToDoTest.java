@@ -67,6 +67,21 @@ public class ToDoTest {
     }
 
     @Test
+    public void markAllComplete() throws Exception {
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToReact();
+        ToDoPage toDoPage = new ToDoPage(driver);
+        toDoPage.addNewTodo("Task1");
+        toDoPage.addNewTodo("Task2");
+        toDoPage.addNewTodo("Task3");
+        assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
+        toDoPage.markAllAsComplete();
+        assertTrue(toDoPage.retrieveToDoCount().contains("0 items left"));
+        toDoPage.markAllAsComplete();
+        assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
+        toDoPage.takeScreenshot(driver, "markAllComplete.png");
+    }
+    @Test
     public void checkToDoCount() {
         HomePage homePage = new HomePage(driver);
         homePage.navigateToReact();
