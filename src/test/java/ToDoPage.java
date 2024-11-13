@@ -3,6 +3,7 @@ import org.openqa.selenium.*;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.List;
 
 public class ToDoPage {
 
@@ -18,6 +19,10 @@ public class ToDoPage {
     public void addNewTodo(String newToDo) {
         WebElement inputContainer = driver.findElement(inputBoxBy);
         inputContainer.sendKeys(newToDo + Keys.ENTER);
+    }
+    public Boolean isToDoCountHidden() {
+        List<WebElement> toDoCountElements = driver.findElements(toDoCountBy);
+        return toDoCountElements.isEmpty();
     }
 
     public String retrieveToDoCount() {

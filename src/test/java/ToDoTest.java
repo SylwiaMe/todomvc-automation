@@ -6,8 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ToDoTest {
 
@@ -16,7 +15,7 @@ public class ToDoTest {
     @BeforeAll
     static void launchBrowser() {
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     @Test
@@ -35,6 +34,16 @@ public class ToDoTest {
         toDoPage.addNewTodo("❤\uFE0F");
         assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
         toDoPage.takeScreenshot(driver, "emoji.png");
+    }
+    @Test
+    public void emptyToDo() throws Exception {
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToReact();
+        ToDoPage toDoPage = new ToDoPage(driver);
+        toDoPage.addNewTodo(" ");
+        assertTrue(toDoPage.isToDoCountHidden());
+        toDoPage.takeScreenshot(driver, "emptyToDo.png");
+
     }
 
     @Test
@@ -62,20 +71,12 @@ public class ToDoTest {
         HomePage homePage = new HomePage(driver);
         homePage.navigateToReact();
         ToDoPage toDoPage = new ToDoPage(driver);
-        toDoPage.addNewTodo("test");
-        assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
-        toDoPage.addNewTodo("testt");
-        assertTrue(toDoPage.retrieveToDoCount().contains("2 items left"));
-        toDoPage.addNewTodo("testtt");
-        assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
-        toDoPage.addNewTodo("testttt");
-        assertTrue(toDoPage.retrieveToDoCount().contains("4 items left"));
-        toDoPage.addNewTodo("testtttt");
-        assertTrue(toDoPage.retrieveToDoCount().contains("5 items left"));
-        toDoPage.addNewTodo("testttttt");
-        assertTrue(toDoPage.retrieveToDoCount().contains("6 items left"));
-        toDoPage.addNewTodo("testtttttt");
-        assertTrue(toDoPage.retrieveToDoCount().contains("7 items left"));
+        for (int i = 1; i <= 100; i++) {
+            toDoPage.addNewTodo("test" + i);
+            String itemsWord = (i == 1) ? "item" : "items";
+            String expectedItemsLeft = i + " " + itemsWord + " left";
+            assertTrue(toDoPage.retrieveToDoCount().contains(expectedItemsLeft));
+        }
     }
 
     @AfterAll
