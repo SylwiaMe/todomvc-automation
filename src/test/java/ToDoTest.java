@@ -124,6 +124,11 @@ public class ToDoTest {
         }
     }
 
+    // test that adds todos, marks all as complete, presses clear complete,
+    // Then: either check that it says "0 items left", or check if the number
+    // of to do items falls to 0 AND it says "0 items left"
+    // (modify.toDoPage.countVisibleToDos)
+
     @AfterAll
     static void closeBrowser() {
         driver.quit();

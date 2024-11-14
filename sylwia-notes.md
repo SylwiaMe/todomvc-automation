@@ -8,11 +8,8 @@
 
 ## ToDo
 - Try to break assertions
-- Add assertion to addEmoji that tests whether todo item.getText() == exact emoji input
 - To complete few ToDos from the list (not all) and test markComplete?
-- ToDo items have a character limit (long don't cause issues)
-- Test more frameworks 
-- The list can be filtered on todo items' completion states
+- Test more frameworks
 - Clear all completed items
 - Reordering Todos
 
@@ -27,6 +24,9 @@
 - All ToDo items may be marked as complete/incomplete at once
 - Status bar always displays a count of remaining todo items 
 - Assertions
+- Add assertion to addEmoji that tests whether todo item.getText() == exact emoji input
+- ToDo items have a character limit (long don't cause issues)
+- The list can be filtered on todo items' completion states
 
 ## Problems
 - Emojis rendering as HTML encoded version 
