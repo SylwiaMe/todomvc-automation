@@ -31,7 +31,7 @@ public class ToDoTest {
         HomePage homePage = new HomePage(driver);
         homePage.navigateToReact();
         ToDoPage toDoPage = new ToDoPage(driver);
-        toDoPage.addNewTodo("❤\uFE0F");
+        toDoPage.addNewTodo("\uD83E\uDD79");
         assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
         toDoPage.takeScreenshot(driver, "emoji.png");
     }
@@ -45,6 +45,36 @@ public class ToDoTest {
         toDoPage.takeScreenshot(driver, "emptyToDo.png");
 
     }
+    @Test
+    public void characterLimitNoSpaces() throws Exception {
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToReact();
+        ToDoPage toDoPage = new ToDoPage(driver);
+
+
+        toDoPage.addToDoSpecifiedLength(20, "tttttttttt");
+        assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
+        toDoPage.addToDoSpecifiedLength(100, "tttttttttt");
+        assertTrue(toDoPage.retrieveToDoCount().contains("2 items left"));
+        toDoPage.addToDoSpecifiedLength(5000, "tttttttttt");
+        assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
+        toDoPage.takeScreenshot(driver, "char-limit.png");
+    }
+    @Test
+    public void characterLimitWithSpaces() throws Exception {
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToReact();
+        ToDoPage toDoPage = new ToDoPage(driver);
+
+        toDoPage.addToDoSpecifiedLengthWithSpaces(100, "mop clean cook running konstantynopolitanczykowianeczka");
+        assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
+        toDoPage.addToDoSpecifiedLengthWithSpaces(1000, "mop clean cook running");
+        assertTrue(toDoPage.retrieveToDoCount().contains("2 items left"));
+        toDoPage.addToDoSpecifiedLengthWithSpaces(5000, "mop clean cook running");
+        assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
+        toDoPage.takeScreenshot(driver, "charNoLimitSpaces.png");
+    }
+
 
     @Test
     public void addSpecialChars() throws Exception {

@@ -8,6 +8,7 @@ import java.util.List;
 public class ToDoPage {
 
     protected WebDriver driver;
+
     public final By inputBoxBy = By.className("new-todo");
     public final By toDoCountBy = By.className("todo-count");
     public final By toggleAllBy = By.cssSelector("input[type=checkbox]");
@@ -21,6 +22,23 @@ public class ToDoPage {
         WebElement inputContainer = driver.findElement(inputBoxBy);
         inputContainer.sendKeys(newToDo + Keys.ENTER);
     }
+
+    public void addToDoSpecifiedLength(Integer length, String input) {
+        WebElement inputContainer = driver.findElement(inputBoxBy);
+        for (int counter = 0; counter < (double) (length / 10); counter++) {
+            inputContainer.sendKeys(input);
+        }
+        inputContainer.sendKeys(Keys.ENTER);
+    }
+    public void addToDoSpecifiedLengthWithSpaces(Integer length, String input) {
+        WebElement inputContainer = driver.findElement(inputBoxBy);
+        int loopLimit = (int) Math.ceil((double) length / input.length());
+        for (int counter = 0; counter < loopLimit; counter++ ) {
+            inputContainer.sendKeys(input);
+        }
+        inputContainer.sendKeys(Keys.ENTER);
+    }
+
     public Boolean isToDoCountHidden() {
         List<WebElement> toDoCountElements = driver.findElements(toDoCountBy);
         return toDoCountElements.isEmpty();

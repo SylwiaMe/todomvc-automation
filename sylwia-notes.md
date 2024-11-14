@@ -31,3 +31,6 @@
 ## Problems
 - Emojis rendering as HTML encoded version 
 - Special chars rendering as HTML encoded version 
+
+## Worth working on in the future
+- dividing the words nicely without breaking them when Todo input is long 
