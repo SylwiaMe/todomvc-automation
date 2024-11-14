@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
@@ -12,6 +11,9 @@ public class ModifyToDoPage {
 
     protected WebDriver driver;
     public final By toDoListBy = By.className("todo-list");
+    public final By allFilterBy = By.linkText("All");
+    public final By activeFilterBy = By.linkText("Active");
+    public final By completedFilterBy = By.linkText("Completed");
 
     public ModifyToDoPage(WebDriver driver) {
         this.driver = driver;
@@ -38,10 +40,34 @@ public class ModifyToDoPage {
             WebElement toDoLabel = toDoItem.findElement(By.tagName("label"));
             if (Objects.equals(toDoLabel.getText(), currentText)) {
                 actions.doubleClick(toDoItem).perform();
-                Thread.sleep(1000);
                 toDoItem.findElement(By.tagName("input")).sendKeys(newText + Keys.ENTER);
-                Thread.sleep(1000);
             }
         }
+    }
+
+    public void disableFilter() {
+        WebElement filterByAllBtn = driver.findElement(allFilterBy);
+        filterByAllBtn.click();
+    }
+
+    public void filterByActive() {
+        WebElement filterByActiveBtn = driver.findElement(activeFilterBy);
+        filterByActiveBtn.click();
+    }
+
+    public void filterByCompleted() {
+        WebElement filterByCompletedBtn = driver.findElement(completedFilterBy);
+        filterByCompletedBtn.click();
+    }
+
+    public List<WebElement> retrieveToDoElements() {
+        WebElement toDoList = driver.findElement(toDoListBy);
+        return toDoList.findElements(By.className("view"));
+    }
+
+    public Integer countVisibleToDos() {
+        WebElement toDoList = driver.findElement(toDoListBy);
+        List<WebElement> toDoItems = toDoList.findElements(By.className("view"));
+        return toDoItems.size();
     }
 }
