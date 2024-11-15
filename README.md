@@ -39,12 +39,14 @@ Framework missing styling:
 
 ## ToDo (if more time given)
 - Collaborate with Developers to write more consistent IDs for elements across frameworks. This will speed up future automation.
+- Use comments to write documentation for each test, providing more context
+- Inform testers of failing test (checkSpecialCharsRenderCorrectly). This is meant to fail because the application doesn't have the expected behaviour. Once special chars are fixed the test will pass.
 - More rigorous tests for Boundary Values Analysis
 - Wider coverage - more browsers and frameworks - the HomePage file caters for this. We can run our tests for every framework
   and adjust locators as needed.
 - Reordering Todos - (as it is not working atm) try to propose solution and test it
 - Refactoring more code where needed
-- screenshots - keep/remove where needed
+- Screenshots - keep/remove where needed
 
 ## Done
 - Replaced thread.sleep with implicit wait
