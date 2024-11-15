@@ -28,3 +28,6 @@ Fails valid rendering test:
 - Input: (>>>>)
 - Input: (<<<<)
 - Input: (&&&&)
+
+## ToDo:
+- Test accented characters render correctly

@@ -70,4 +70,15 @@ public class ModifyToDoPage {
         List<WebElement> toDoItems = toDoList.findElements(By.className("view"));
         return toDoItems.size();
     }
+
+    public void markItemAsComplete(String itemToDelete) {
+        ModifyToDoPage modifyToDoPage = new ModifyToDoPage(driver);
+        List<WebElement> toDoItems = modifyToDoPage.retrieveToDoElements();
+        for (WebElement toDoItem: toDoItems) {
+            WebElement toDoLabel = toDoItem.findElement(By.tagName("label"));
+            if (Objects.equals(toDoLabel.getText(), itemToDelete)) {
+                toDoItem.findElement(By.cssSelector("input[type=checkbox]")).click();
+            }
+        }
+    }
 }
