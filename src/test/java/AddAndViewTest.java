@@ -3,18 +3,20 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ToDoTest {
+public class AddAndViewTest {
 
     private static WebDriver driver;
 
     @BeforeAll
     static void launchBrowser() {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
@@ -26,15 +28,6 @@ public class ToDoTest {
         toDoPage.takeScreenshot(driver, "todomvc.png");
     }
 
-    @Test
-    public void addEmoji() throws Exception {
-        HomePage homePage = new HomePage(driver);
-        homePage.navigateToReact();
-        ToDoPage toDoPage = new ToDoPage(driver);
-        toDoPage.addNewTodo("\uD83E\uDD79");
-        assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
-        toDoPage.takeScreenshot(driver, "emoji.png");
-    }
     @Test
     public void emptyToDo() throws Exception {
         HomePage homePage = new HomePage(driver);
@@ -50,8 +43,6 @@ public class ToDoTest {
         HomePage homePage = new HomePage(driver);
         homePage.navigateToReact();
         ToDoPage toDoPage = new ToDoPage(driver);
-
-
         toDoPage.addToDoSpecifiedLength(20, "tttttttttt");
         assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
         toDoPage.addToDoSpecifiedLength(100, "tttttttttt");
@@ -60,57 +51,21 @@ public class ToDoTest {
         assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
         toDoPage.takeScreenshot(driver, "char-limit.png");
     }
+
     @Test
     public void characterLimitWithSpaces() throws Exception {
         HomePage homePage = new HomePage(driver);
         homePage.navigateToReact();
         ToDoPage toDoPage = new ToDoPage(driver);
-
-        toDoPage.addToDoSpecifiedLengthWithSpaces(100, "mop clean cook running konstantynopolitanczykowianeczka");
+        toDoPage.addToDoSpecifiedLength(100, "mop clean cook running konstantynopolitanczykowianeczka ");
         assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
-        toDoPage.addToDoSpecifiedLengthWithSpaces(1000, "mop clean cook running");
+        toDoPage.addToDoSpecifiedLength(1000, "mop clean cook running ");
         assertTrue(toDoPage.retrieveToDoCount().contains("2 items left"));
-        toDoPage.addToDoSpecifiedLengthWithSpaces(5000, "mop clean cook running");
+        toDoPage.addToDoSpecifiedLength(5000, "mop clean cook running ");
         assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
         toDoPage.takeScreenshot(driver, "charNoLimitSpaces.png");
     }
 
-
-    @Test
-    public void addSpecialChars() throws Exception {
-        HomePage homePage = new HomePage(driver);
-        homePage.navigateToReact();
-        ToDoPage toDoPage = new ToDoPage(driver);
-        toDoPage.addNewTodo("&;/><");
-        assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
-        toDoPage.takeScreenshot(driver, "special-chars.png");
-    }
-
-    @Test
-    public void addAccentedChars() throws Exception {
-        HomePage homePage = new HomePage(driver);
-        homePage.navigateToReact();
-        ToDoPage toDoPage = new ToDoPage(driver);
-        toDoPage.addNewTodo("àâ");
-        assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
-        toDoPage.takeScreenshot(driver, "accented-chars.png");
-    }
-
-    @Test
-    public void markAllComplete() throws Exception {
-        HomePage homePage = new HomePage(driver);
-        homePage.navigateToReact();
-        ToDoPage toDoPage = new ToDoPage(driver);
-        toDoPage.addNewTodo("Task1");
-        toDoPage.addNewTodo("Task2");
-        toDoPage.addNewTodo("Task3");
-        assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
-        toDoPage.markAllAsComplete();
-        assertTrue(toDoPage.retrieveToDoCount().contains("0 items left"));
-        toDoPage.markAllAsComplete();
-        assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
-        toDoPage.takeScreenshot(driver, "markAllComplete.png");
-    }
     @Test
     public void checkToDoCount() {
         HomePage homePage = new HomePage(driver);
@@ -123,20 +78,48 @@ public class ToDoTest {
             assertTrue(toDoPage.retrieveToDoCount().contains(expectedItemsLeft));
         }
     }
+
     @Test
-    public void clearCompletedToDos() throws Exception{
+    public void checkEmojisRenderCorrectly() {
+        String[] emojis = {"\uD83D\uDE17", "\uD83D\uDE03", "\uD83E\uDD2A"};
         HomePage homePage = new HomePage(driver);
         homePage.navigateToReact();
         ToDoPage toDoPage = new ToDoPage(driver);
-        ModifyToDoPage modifyToDoPage = new ModifyToDoPage(driver);
-        toDoPage.addNewTodo("Task1");
-        toDoPage.addNewTodo("Task2");
-        toDoPage.addNewTodo("Task3");
-        assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
-        toDoPage.markAllAsComplete();
-        toDoPage.pressClearCompleted();
-        assertEquals(modifyToDoPage.countVisibleToDos(),0);
-        toDoPage.takeScreenshot(driver, "clearCompleted.png");
+        ArrayList<String> wronglyRenderedEmojis = toDoPage.findWronglyRenderedChars(emojis);
+        if (!wronglyRenderedEmojis.isEmpty()) {
+            System.out.println("Strings that failed: " + wronglyRenderedEmojis);
+        }
+        assertEquals(wronglyRenderedEmojis.size(),0);
+        assertTrue(toDoPage.retrieveToDoCount().contains(emojis.length + " items left"));
+    }
+
+    @Test
+    public void checkSpecialCharsRenderCorrectly() {
+        String[] specialCharStrings = {">>>>", "<<<<", "&&&&", ";;;;", "!!!!", "[][]", "{}{}", "////", ",,,,", "::::", "....", "''''", "****", "^^^^", "$$$$", "££££", "++++", "----"};
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToReact();
+        ToDoPage toDoPage = new ToDoPage(driver);
+        ArrayList<String> wronglyRenderedStrings = toDoPage.findWronglyRenderedChars(specialCharStrings);
+        if (!wronglyRenderedStrings.isEmpty()) {
+            System.out.println("Strings that failed: " + wronglyRenderedStrings);
+        }
+        // test currently fails for several strings (see README.md)
+        assertEquals(wronglyRenderedStrings.size(),0);
+        assertTrue(toDoPage.retrieveToDoCount().contains(specialCharStrings.length + " items left"));
+    }
+
+    @Test
+    public void checkAccentedCharsRenderCorrectly() {
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToReact();
+        ToDoPage toDoPage = new ToDoPage(driver);
+        String[] accentedCharStrings = {"àáâäǎæãåā", "èéêëěẽēėę", "ìíîïǐĩīıį", "òóôöǒœøõō", "ùúûüǔũūűů", "çćčċ", "ñńņň", "ßşșśš", "ğġ", "źžż", "ŵŵ", "řř", "țťþ", "ýŷÿ", "ďð", "ħħ", "ķķ", "łļľ"};
+        ArrayList<String> wronglyRenderedStrings = toDoPage.findWronglyRenderedChars(accentedCharStrings);
+        if (!wronglyRenderedStrings.isEmpty()) {
+            System.out.println("Strings that failed: " + wronglyRenderedStrings);
+        }
+        assertEquals(wronglyRenderedStrings.size(),0);
+        assertTrue(toDoPage.retrieveToDoCount().contains(accentedCharStrings.length + " items left"));
     }
 
     @AfterAll
