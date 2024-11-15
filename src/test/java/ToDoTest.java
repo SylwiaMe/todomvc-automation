@@ -123,11 +123,21 @@ public class ToDoTest {
             assertTrue(toDoPage.retrieveToDoCount().contains(expectedItemsLeft));
         }
     }
-
-    // test that adds todos, marks all as complete, presses clear complete,
-    // Then: either check that it says "0 items left", or check if the number
-    // of to do items falls to 0 AND it says "0 items left"
-    // (modify.toDoPage.countVisibleToDos)
+    @Test
+    public void clearCompletedToDos() throws Exception{
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToReact();
+        ToDoPage toDoPage = new ToDoPage(driver);
+        ModifyToDoPage modifyToDoPage = new ModifyToDoPage(driver);
+        toDoPage.addNewTodo("Task1");
+        toDoPage.addNewTodo("Task2");
+        toDoPage.addNewTodo("Task3");
+        assertTrue(toDoPage.retrieveToDoCount().contains("3 items left"));
+        toDoPage.markAllAsComplete();
+        toDoPage.pressClearCompleted();
+        assertEquals(modifyToDoPage.countVisibleToDos(),0);
+        toDoPage.takeScreenshot(driver, "clearCompleted.png");
+    }
 
     @AfterAll
     static void closeBrowser() {

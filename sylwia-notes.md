@@ -2,15 +2,13 @@
 
 ## addEmoji initial tests
 
-- Unable to add ToDo item to the list with 1 character only, except emoji 
+- Unable to add ToDo item to the list with 1 character only, except emoji (depends on framework)
 - Unable to add ToDo item to the list with 0 characters or space only
 - Some special characters render as their HTML encoded versions. "&" special character renders as "&amp;"
 
 ## ToDo
 - Try to break assertions
-- To complete few ToDos from the list (not all) and test markComplete?
 - Test more frameworks
-- Clear all completed items
 - Reordering Todos
 
 ## Done
@@ -27,6 +25,7 @@
 - Add assertion to addEmoji that tests whether todo item.getText() == exact emoji input
 - ToDo items have a character limit (long don't cause issues)
 - The list can be filtered on todo items' completion states
+- Clear complete button removes Todos from the list 
 
 ## Problems
 - Emojis rendering as HTML encoded version 

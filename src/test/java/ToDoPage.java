@@ -12,7 +12,7 @@ public class ToDoPage {
     public final By inputBoxBy = By.className("new-todo");
     public final By toDoCountBy = By.className("todo-count");
     public final By toggleAllBy = By.cssSelector("input[type=checkbox]");
-    //clearCompletedBy
+    public final By clearCompletedBy = By.className("clear-completed");
 
     public ToDoPage(WebDriver driver) {
         this.driver = driver;
@@ -56,6 +56,11 @@ public class ToDoPage {
     }
 
     //helper method: press clear completed button
+
+    public void pressClearCompleted(){
+        WebElement clearCompletedButton = driver.findElement(clearCompletedBy);
+        clearCompletedButton.click();
+    }
 
     public void takeScreenshot  (WebDriver webdriver, String desiredPath) throws Exception{
         TakesScreenshot screenshot = ((TakesScreenshot)webdriver);
