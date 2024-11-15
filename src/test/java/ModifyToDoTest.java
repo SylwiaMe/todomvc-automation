@@ -126,6 +126,65 @@ public class ModifyToDoTest {
         }
     }
 
+    @Test
+    public void checkAccentedCharsRenderCorrectly() throws Exception {
+        String[] accentedCharStrings = {"àáâäǎæãåā", "èéêëěẽēėę", "ìíîïǐĩīıį", "òóôöǒœøõō", "ùúûüǔũūűů", "çćčċ", "ñńņň", "ßşșśš", "ğġ", "źžż", "ŵŵ", "řř", "țťþ", "ýŷÿ", "ďð", "ħħ", "ķķ", "łļľ"};
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToReact();
+        ToDoPage toDoPage = new ToDoPage(driver);
+        for (String accentedCharString: accentedCharStrings) {
+            toDoPage.addNewTodo(accentedCharString);
+        }
+        toDoPage.takeScreenshot(driver, "render-accented-chars.png");
+        ModifyToDoPage modifyToDoPage = new ModifyToDoPage(driver);
+        List<WebElement> toDoItems = modifyToDoPage.retrieveToDoElements();
+        for (int i = 0; i < toDoItems.size(); i++){
+            WebElement toDoLabel = toDoItems.get(i).findElement(By.tagName("label"));
+            System.out.println("Input: (" + accentedCharStrings[i] + ") Output: (" + toDoLabel.getText() + ")");
+            assertEquals(toDoLabel.getText(), accentedCharStrings[i]);
+        }
+    }
+
+    @Test
+    public void markIndividualItemAsComplete() {
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToReact();
+        ToDoPage toDoPage = new ToDoPage(driver);
+        toDoPage.addNewTodo("homework");
+        toDoPage.addNewTodo("laundry");
+        ModifyToDoPage modifyToDoPage = new ModifyToDoPage(driver);
+        modifyToDoPage.markItemAsComplete("laundry");
+        assertEquals(modifyToDoPage.countVisibleToDos(), 2);
+        assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
+        modifyToDoPage.filterByCompleted();
+        assertEquals(modifyToDoPage.countVisibleToDos(), 1);
+        modifyToDoPage.disableFilter();
+        modifyToDoPage.markItemAsComplete("homework");
+        assertTrue(toDoPage.retrieveToDoCount().contains("0 items left"));
+        modifyToDoPage.filterByCompleted();
+        assertEquals(modifyToDoPage.countVisibleToDos(), 2);
+    }
+
+    @Test
+    public void markOneItemThenAllAsComplete() {
+        HomePage homePage = new HomePage(driver);
+        homePage.navigateToReact();
+        ToDoPage toDoPage = new ToDoPage(driver);
+        toDoPage.addNewTodo("homework");
+        toDoPage.addNewTodo("laundry");
+        ModifyToDoPage modifyToDoPage = new ModifyToDoPage(driver);
+        modifyToDoPage.markItemAsComplete("laundry");
+        assertEquals(modifyToDoPage.countVisibleToDos(), 2);
+        assertTrue(toDoPage.retrieveToDoCount().contains("1 item left"));
+        toDoPage.markAllAsComplete();
+        assertEquals(modifyToDoPage.countVisibleToDos(), 2);
+        assertTrue(toDoPage.retrieveToDoCount().contains("0 items left"));
+        modifyToDoPage.filterByCompleted();
+        assertEquals(modifyToDoPage.countVisibleToDos(), 2);
+        assertTrue(toDoPage.retrieveToDoCount().contains("0 items left"));
+    }
+
+
     @AfterAll
     static void closeBrowser() {
         driver.quit();
